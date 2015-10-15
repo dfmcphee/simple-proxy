@@ -1,0 +1,71 @@
+html,
+body {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: 100;
+}
+
+h1 {
+	font-size: 60px;
+	font-weight: 100;
+	margin: 0;
+	padding: 0;
+	letter-spacing: 2px;
+}
+
+h2 {
+	font-size: 40px;
+	font-weight: 100;
+	margin: 0;
+	padding: 0;
+	letter-spacing: 2px;
+}
+
+input,
+button {
+	font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.container__header {
+	flex: 0 0 auto;
+	padding: 20px;
+}
+
+.container__body {
+	flex: 1 1 auto;
+	padding: 20px;
+}
+
+.container__footer {
+	flex: 0 0 auto;
+	padding: 20px;
+}
+
+.controls {
+	display: flex;
+	width: 100%;
+}
+
+.controls__input {
+	flex: 20 1 auto;
+	height: 32px;
+	font-size: 24px;
+}
+
+.controls__button {
+	flex: 1 0 auto;
+	height: 38px;
+	border: none;
+	background: #3c3c3c;
+	color: #fff;
+}
