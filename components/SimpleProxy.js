@@ -2,18 +2,16 @@ let ipc = require('ipc');
 let React = require('react');
 let ReactDOM = require('react-dom');
 let Controls = require('./Controls');
-let LocalIP = require('./LocalIP');
-
-function validPort(port) {
-  return (port > 1023 && port < 65536)
-}
+let Info = require('./Info');
+let Settings = require('./Settings');
 
 let SimpleProxy = React.createClass({
   getInitialState: function() {
     return {
-      ip: '0.0.0.0',
-      invalidPort: false,
-      proxyStarted: false
+      ip: 'Detecting IP...',
+      proxyStarted: false,
+      settingsOpen: false,
+      port: 8888
     };
   },
 
@@ -23,46 +21,67 @@ let SimpleProxy = React.createClass({
   },
 
   setIP: function(ip) {
-    this.setState({ip: ip});
+    this.setState({
+      ip: ip
+    });
   },
 
-  startProxy: function(port) {
-    if (validPort(port)) {
-      ipc.send('start-proxy', port);
-      this.setState({
-        invalidPort: false,
-        proxyStarted: true
-      });
-    }
-    else {
-      this.setState({
-        invalidPort: true
-      });
-    }
+  startProxy: function() {
+    ipc.send('start-proxy', this.state.port);
+    this.setState({
+      proxyStarted: true
+    });
   },
 
   stopProxy: function() {
     ipc.send('stop-proxy');
     this.setState({
-      invalidPort: false,
       proxyStarted: false
     });
   },
 
+  openSettings: function() {
+    this.setState({
+      settingsOpen: true
+    })
+  },
+
+  saveSettings: function(port) {
+    this.setState({
+      settingsOpen: false,
+      port: port
+    })
+  },
+
   render: function() {
-    return (
-      <div className="container">
-  			<header className="container__header">
-  				<h1>Simple Proxy</h1>
-  			</header>
-        <section className="container__body">
-          <Controls startProxy={this.startProxy} stopProxy={this.stopProxy} proxyStarted={this.state.proxyStarted} />
-        </section>
-        <footer className="container__footer">
-  			  <LocalIP ip={this.state.ip} />
-        </footer>
-  		</div>
-    );
+    if (this.state.settingsOpen) {
+      return (
+        <Settings saveSettings={this.saveSettings} />
+      );
+    }
+    else {
+      return (
+        <div className="container">
+          <header className="toolbar toolbar-header">
+            <h1 className="title">SimpleProxy</h1>
+          </header>
+          <section className="container__body">
+            <Controls startProxy={this.startProxy}
+              stopProxy={this.stopProxy}
+              invalidPort={this.state.invalidPort}
+              proxyStarted={this.state.proxyStarted} />
+            <Info ip={this.state.ip} port={this.state.port} />
+          </section>
+          <footer className="toolbar toolbar-footer">
+            <div className="toolbar-actions">
+              <button className="btn btn-default pull-right" onClick={this.openSettings}>
+                <span className="icon icon-cog"></span>
+              </button>
+            </div>
+          </footer>
+    		</div>
+      );
+    }
   }
 });
 

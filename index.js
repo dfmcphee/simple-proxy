@@ -17,10 +17,15 @@ let menubar = require('menubar');
 let defaultPort = 8888;
 let mainWindow;
 let server;
-let mb = menubar();
+let mb = menubar({
+  preloadWindow: true,
+  width: 400,
+  height: 180
+});
 
 mb.on('ready', function ready () {
   console.log('app is ready')
+  //mb.window.openDevTools();
 });
 
 ipc.on('connect', function(event) {

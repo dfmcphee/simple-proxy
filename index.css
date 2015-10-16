@@ -1,7 +1,10 @@
+/* Base */
 html,
 body {
 	padding: 0;
 	margin: 0;
+	height: 100%;
+	width: 100%;
 }
 
 body {
@@ -10,30 +13,21 @@ body {
 	font-weight: 100;
 }
 
-h1 {
-	font-size: 60px;
-	font-weight: 100;
-	margin: 0;
-	padding: 0;
-	letter-spacing: 2px;
-}
-
-h2 {
-	font-size: 40px;
-	font-weight: 100;
-	margin: 0;
-	padding: 0;
-	letter-spacing: 2px;
-}
-
 input,
 button {
 	font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
 }
 
+input:focus,
+button:focus {
+  outline: 0;
+}
+
+/* Container */
 .container {
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 }
 
 .container__header {
@@ -51,21 +45,77 @@ button {
 	padding: 20px;
 }
 
+/* Controls */
 .controls {
 	display: flex;
+	align-items: center;
+  justify-content: center;
 	width: 100%;
 }
 
-.controls__input {
-	flex: 20 1 auto;
-	height: 32px;
-	font-size: 24px;
-}
-
 .controls__button {
-	flex: 1 0 auto;
+	flex: 1 1 auto;
 	height: 38px;
 	border: none;
-	background: #3c3c3c;
+}
+
+.controls__button--start {
+	background: #19b00b;
 	color: #fff;
+}
+
+.controls__button--stop {
+	background: #d5372d;
+	color: #fff;
+}
+
+/* Settings */
+.settings {
+	display: flex;
+	align-items: center;
+  justify-content: center;
+	width: 100%;
+}
+
+.settings__label {
+	flex: 1 1 auto;
+	font-size: 24px;
+	margin: 0;
+	padding: 0;
+}
+
+.settings__input {
+	flex: 1 1 auto;
+	font-size: 24px;
+	margin: 0;
+	padding: 0;
+}
+
+/* Info */
+.info {
+	display: flex;
+	align-items: center;
+  justify-content: center;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.info__ip {
+	flex: 1 1 auto;
+	font-size: 24px;
+	margin: 0;
+	padding: 0;
+}
+
+.info__port {
+	flex: 1 1 auto;
+	font-size: 24px;
+	margin: 0;
+	padding: 0;
+}
+
+/* Error */
+.error {
+	color: #d5372d;
+	margin-top: 20px;
 }

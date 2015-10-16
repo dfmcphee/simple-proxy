@@ -2,35 +2,21 @@ let ipc = require('ipc');
 let React = require('react');
 let ReactDOM = require('react-dom');
 
-var Controls = React.createClass({
-  getInitialState: function() {
-    return {
-      port: 8888
-    };
-  },
-
-  portChanged: function(event) {
-    this.setState({
-      port: parseInt(event.target.value)
-    });
-  },
-
+let Controls = React.createClass({
   render: function() {
+    let button;
+
     if (this.props.proxyStarted) {
-      return (
-        <div className="controls">
-          <p className="controls__input">Proxy running</p>
-          <button className="controls__button" type="button" onClick={this.props.stopProxy}>Stop Proxy</button>
-        </div>
-      );
+      button = <button className="controls__button controls__button--stop" type="button" onClick={this.props.stopProxy}>Stop Proxy</button>
     } else {
-      return (
-        <div className="controls">
-          <input className="controls__input" id="port" type="text" value={this.state.port} onChange={this.portChanged} />
-          <button className="controls__button" type="button" onClick={() => this.props.startProxy(this.state.port)}>Start Proxy</button>
-        </div>
-      );
+      button = <button className="controls__button controls__button--start" type="button" onClick={this.props.startProxy}>Start Proxy</button>
     }
+
+    return (
+      <div className="controls">
+        {button}
+      </div>
+    );
   }
 });
 
