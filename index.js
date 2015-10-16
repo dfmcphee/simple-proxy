@@ -14,9 +14,8 @@ let ipc = require('ipc');
 let dns = require('dns');
 let menubar = require('menubar');
 
-let defaultPort = 8888;
-let mainWindow;
 let server;
+
 let mb = menubar({
   preloadWindow: true,
   width: 400,
@@ -31,7 +30,7 @@ mb.on('ready', function ready () {
 ipc.on('connect', function(event) {
 	dns.lookup(require('os').hostname(), function (err, address, fam) {
 	  event.sender.send('set-ip', address);
-	})
+	});
 });
 
 ipc.on('start-proxy', function(event, port) {
