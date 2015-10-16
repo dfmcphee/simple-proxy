@@ -2,6 +2,9 @@
 
 > A dead simple proxy app that lives in your OS X system tray
 
+## Download
+Download [OS X App](https://s3-us-west-2.amazonaws.com/dfmcphee/SimpleProxy.zip)
+
 ## Dev
 
 ```
