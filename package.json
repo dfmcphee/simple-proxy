@@ -17,7 +17,7 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion"
+    "build": "electron-packager . SimpleProxy --out=dist --ignore='^/dist$' --prune --asar --all --platform=darwin --arch=x64 --version=0.33.8"
   },
   "keywords": [
     "electron-app"
