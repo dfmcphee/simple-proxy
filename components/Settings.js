@@ -2,10 +2,6 @@ let ipc = require('ipc');
 let React = require('react');
 let ReactDOM = require('react-dom');
 
-function validPort(port) {
-  return (port > 1023 && port < 65536)
-}
-
 let Settings = React.createClass({
   getInitialState: function() {
     return {
@@ -14,14 +10,18 @@ let Settings = React.createClass({
     };
   },
 
+  validPort: function(port) {
+    return (port > 1023 && port < 65536)
+  },
+
   portChanged: function(event) {
     this.setState({
       port: parseInt(event.target.value) || 0
     });
   },
 
-  saveSettings: function() {
-    if (validPort(this.state.port)) {
+  save: function() {
+    if (this.validPort(this.state.port)) {
       this.props.saveSettings(this.state.port);
     }
     else {
@@ -50,10 +50,17 @@ let Settings = React.createClass({
           {error}
         </section>
         <footer className="toolbar toolbar-footer">
-          <div className="toolbar-actions">
-            <button className="btn btn-primary pull-right" onClick={this.saveSettings}>
-              Save
-            </button>
+          <div className="actions">
+            <div className="actions__left">
+              <button className="btn btn-default" onClick={this.props.cancelSettings}>
+                Cancel
+              </button>
+            </div>
+            <div className="actions__right">
+              <button className="btn btn-primary" onClick={this.save}>
+                Save
+              </button>
+            </div>
           </div>
         </footer>
       </div>

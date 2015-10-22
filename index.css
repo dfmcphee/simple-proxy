@@ -5,17 +5,20 @@ body {
 	margin: 0;
 	height: 100%;
 	width: 100%;
+	color: #505050;
 }
 
 body {
-	font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
 	font-size: 24px;
 	font-weight: 100;
+	font-family: 'SF UI Text', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+	letter-spacing: 0.03em;
 }
 
 input,
 button {
-	font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: 100;
+	letter-spacing: 0.05em;
 }
 
 input:focus,
@@ -55,7 +58,7 @@ button:focus {
 
 .controls__button {
 	flex: 1 1 auto;
-	height: 38px;
+	height: 42px;
 	border: none;
 }
 
@@ -88,7 +91,29 @@ button:focus {
 	flex: 1 1 auto;
 	font-size: 24px;
 	margin: 0;
+}
+
+.actions {
+	display: flex;
+}
+
+.actions__left {
+	flex: 1 1 auto;
+	font-size: 24px;
+	margin: 0;
 	padding: 0;
+	margin-left: 4px;
+}
+
+.actions__right {
+	flex: 0 0 auto;
+	font-size: 24px;
+	margin: 0;
+	margin-right: 4px;
+}
+
+.btn-primary.pull-right {
+	margin-top: 10px;
 }
 
 /* Info */

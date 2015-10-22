@@ -43,20 +43,26 @@ let SimpleProxy = React.createClass({
   openSettings: function() {
     this.setState({
       settingsOpen: true
-    })
+    });
   },
 
   saveSettings: function(port) {
     this.setState({
       settingsOpen: false,
       port: port
-    })
+    });
+  },
+
+  cancelSettings: function() {
+    this.setState({
+      settingsOpen: false
+    });
   },
 
   render: function() {
     if (this.state.settingsOpen) {
       return (
-        <Settings saveSettings={this.saveSettings} />
+        <Settings saveSettings={this.saveSettings} cancelSettings={this.cancelSettings} />
       );
     }
     else {
