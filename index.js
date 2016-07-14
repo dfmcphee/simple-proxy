@@ -45,8 +45,8 @@ ipc.on('connect', function(event) {
 });
 
 ipc.on('start-proxy', function(event, port) {
-	server = setup(http.createServer());
-	server.listen(port, function() {
+  server = setup(http.createServer());
+  server.listen(port, function() {
     mb.tray.setImage(icons.active);
     var port = server.address().port;
     console.log('HTTP(s) proxy server listening on port %d', port);
@@ -54,10 +54,10 @@ ipc.on('start-proxy', function(event, port) {
 });
 
 ipc.on('stop-proxy', function(event, port) {
-	server.close(function() {
+  server.close(function() {
     mb.tray.setImage(icons.subdued);
-		console.log('proxy stopped')
-	});
+    console.log('proxy stopped')
+  });
 });
 
 let options = {
