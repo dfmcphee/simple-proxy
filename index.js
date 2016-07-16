@@ -19,11 +19,16 @@ let menubar = require('menubar');
 
 let server;
 
+const icons = {
+  active: app.getAppPath() + '/IconTemplate.png',
+  subdued: app.getAppPath() + '/IconSubduedTemplate.png'
+}
+
 let mb = menubar({
   preloadWindow: true,
   width: 400,
   height: 180,
-  icon: app.getAppPath() + '/IconTemplate.png'
+  icon: icons.subdued
 });
 
 mb.on('ready', function ready () {
@@ -40,17 +45,19 @@ ipc.on('connect', function(event) {
 });
 
 ipc.on('start-proxy', function(event, port) {
-	server = setup(http.createServer());
-	server.listen(port, function() {
+  server = setup(http.createServer());
+  server.listen(port, function() {
+    mb.tray.setImage(icons.active);
     var port = server.address().port;
     console.log('HTTP(s) proxy server listening on port %d', port);
   });
 });
 
 ipc.on('stop-proxy', function(event, port) {
-	server.close(function() {
-		console.log('proxy stopped')
-	});
+  server.close(function() {
+    mb.tray.setImage(icons.subdued);
+    console.log('proxy stopped')
+  });
 });
 
 let options = {
