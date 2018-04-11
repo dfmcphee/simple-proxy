@@ -1,6 +1,6 @@
 {
   "url": "https://github.com/dfmcphee/simple-proxy/releases/latest",
-  "name": "v0.0.3",
-  "notes": "On and off state for tray icon.",
-  "pub_date": "2015-10-21T12:29:53+01:00"
+  "name": "v0.0.4",
+  "notes": "Added a Quit button.",
+  "pub_date": "2018-04-11"
 }
