@@ -60,6 +60,10 @@ ipc.on('stop-proxy', function(event, port) {
   });
 });
 
+ipc.on('quit', function() {
+  app.quit();
+});
+
 let options = {
   repo: 'dfmcphee/simple-proxy',
   currentVersion: app.getVersion()

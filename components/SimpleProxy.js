@@ -59,6 +59,10 @@ let SimpleProxy = React.createClass({
     });
   },
 
+  quit: function() {
+    ipc.send('quit');
+  },
+
   render: function() {
     if (this.state.settingsOpen) {
       return (
@@ -80,12 +84,16 @@ let SimpleProxy = React.createClass({
           </section>
           <footer className="toolbar toolbar-footer">
             <div className="toolbar-actions">
+              <button className="btn btn-default pull-right" onClick={this.quit}>
+                Quit
+              </button>
+
               <button className="btn btn-default pull-right" onClick={this.openSettings}>
                 <span className="icon icon-cog"></span>
               </button>
             </div>
           </footer>
-    		</div>
+        </div>
       );
     }
   }
